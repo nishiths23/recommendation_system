@@ -42,7 +42,7 @@ app.include_router(user_router, prefix='/api')
 
 # With the following code we connect React front with FastAPI backend
 
-templates = Jinja2Templates(directory="../frontend/build/")
+templates = Jinja2Templates(directory="../frontend/")
 
 @app.get("/prediction/{full_path:path}")
 async def serve_spa(request: Request):
@@ -56,6 +56,6 @@ class SPAStaticFiles(StaticFiles):
             response = await super().get_response('.', scope)
         return response
 
-app.mount('/', SPAStaticFiles(directory='../frontend/build/', html=True), name='web')
+app.mount('/', SPAStaticFiles(directory='../frontend/', html=True), name='web')
 
 
